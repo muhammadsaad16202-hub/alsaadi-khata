@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Al Saadi Khata</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-cog"></i>
+                <span>Admin Panel</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#dashboard" class="nav-link active" data-section="dashboard">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+                <a href="#users" class="nav-link" data-section="users">
+                    <i class="fas fa-users"></i> Users
+                </a>
+                <a href="#transactions" class="nav-link" data-section="transactions">
+                    <i class="fas fa-exchange-alt"></i> All Transactions
+                </a>
+                <a href="#customers" class="nav-link" data-section="customers">
+                    <i class="fas fa-user-friends"></i> All Customers
+                </a>
+                <a href="#invoices" class="nav-link" data-section="invoices">
+                    <i class="fas fa-file-invoice"></i> All Invoices
+                </a>
+                <a href="#reports" class="nav-link" data-section="reports">
+                    <i class="fas fa-chart-bar"></i> Reports
+                </a>
+                <a href="#" class="nav-link" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <!-- Admin Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="section-header">
+                <h1>Admin Dashboard</h1>
+                <p>Manage all users and system data</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="total-users">0</h3>
+                        <p>Total Users</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="total-transactions">0</h3>
+                        <p>Total Transactions</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="total-customers">0</h3>
+                        <p>Total Customers</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-file-invoice"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="total-invoices">0</h3>
+                        <p>Total Invoices</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Users Management Section -->
+        <section id="users" class="section">
+            <div class="section-header">
+                <h1>User Management</h1>
+                <p>Manage all registered users</p>
+            </div>
+
+            <div class="table-container">
+                <table id="users-table" class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Business</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Joined</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-list">
+                        <!-- Users will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- All Transactions Section -->
+        <section id="transactions" class="section">
+            <div class="section-header">
+                <h1>All Transactions</h1>
+                <p>View all transactions across all users</p>
+            </div>
+
+            <div class="filters">
+                <select id="filter-user">
+                    <option value="">All Users</option>
+                </select>
+                <select id="filter-type">
+                    <option value="">All Types</option>
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+                <input type="date" id="filter-date">
+            </div>
+
+            <div class="table-container">
+                <table id="transactions-table" class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>User</th>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Customer</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactions-list">
+                        <!-- Transactions will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- All Customers Section -->
+        <section id="customers" class="section">
+            <div class="section-header">
+                <h1>All Customers</h1>
+                <p>View all customers across all users</p>
+            </div>
+
+            <div class="table-container">
+                <table id="customers-table" class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>User</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Balance</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="customers-list">
+                        <!-- Customers will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- All Invoices Section -->
+        <section id="invoices" class="section">
+            <div class="section-header">
+                <h1>All Invoices</h1>
+                <p>View all invoices across all users</p>
+            </div>
+
+            <div class="table-container">
+                <table id="invoices-table" class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>User</th>
+                            <th>Customer</th>
+                            <th>Date</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="invoices-list">
+                        <!-- Invoices will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Reports Section -->
+        <section id="reports" class="section">
+            <div class="section-header">
+                <h1>System Reports</h1>
+                <p>Generate comprehensive reports</p>
+            </div>
+
+            <div class="reports-grid">
+                <div class="report-card">
+                    <h3>Revenue Report</h3>
+                    <p>Total system revenue by month</p>
+                    <button onclick="generateRevenueReport()" class="btn-primary">Generate</button>
+                </div>
+
+                <div class="report-card">
+                    <h3>User Activity</h3>
+                    <p>User registration and activity stats</p>
+                    <button onclick="generateUserReport()" class="btn-primary">Generate</button>
+                </div>
+
+                <div class="report-card">
+                    <h3>Transaction Summary</h3>
+                    <p>All transactions summary</p>
+                    <button onclick="generateTransactionReport()" class="btn-primary">Generate</button>
+                </div>
+            </div>
+
+            <div id="report-output" class="report-output">
+                <!-- Report results will be displayed here -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <div id="user-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('user-modal')">&times;</span>
+            <h2 id="user-modal-title">User Details</h2>
+            <div id="user-details">
+                <!-- User details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Al Saadi Khata</title>
+    <link rel="stylesheet" href="auth.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <i class="fas fa-cog"></i>
+                <h1>Admin Login</h1>
+                <p>Access the admin panel</p>
+            </div>
+
+            <form class="auth-form" id="admin-login-form">
+                <div class="form-group">
+                    <label for="admin-username">Admin Username</label>
+                    <input type="text" id="admin-username" name="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="admin-password">Password</label>
+                    <input type="password" id="admin-password" name="password" required>
+                </div>
+
+                <button type="submit" class="auth-btn">
+                    <span id="login-text">Login</span>
+                    <div id="login-spinner" class="spinner" style="display: none;"></div>
+                </button>
+
+                <div id="error-message" class="error-message" style="display: none;"></div>
+            </form>
+
+            <div class="auth-links">
+                <a href="login.html">← Back to User Login</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin-auth.js"></script>
+</body>
+</html>
